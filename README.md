@@ -1,4 +1,0 @@
-AppoSystem
-==========
-
-Simple Appointment System
