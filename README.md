@@ -12,13 +12,31 @@ for practice about;
 * [BEANS]
 
 Source
-------
+---
 
 `src/db` - database access object classes
 
 `src/servlets` - controllers
 
 `src/util` - utility class
+
+
+Screenshots
+---
+
+<hr>
+
+![index](img/index.png)
+
+
+![signup](img/signup.png)
+
+
+![add appointment](img/addappo.png)
+
+
+![appointments](img/appointments.png)
+
 
 [CRUD]: http://danielniko.wordpress.com/2012/04/17/simple-crud-using-jsp-servlet-and-mysql/
 
