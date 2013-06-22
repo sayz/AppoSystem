@@ -1,17 +1,10 @@
-<%-- 
-    Document   : users
-    Created on : June 11, 2013, 12:55:04 PM
-    Author     : sayz
---%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="db.UserDAO" %>
-<%@page import="servlets.UserServlet" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-  
-  <html lang="tr">
+
+<%@page import="db.AppDAO"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+ <html lang="tr">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Randevu Ekle</title>
@@ -61,7 +54,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
              <li><a href="home.jsp">Home</a></li>
-             <li><a class="active" href="showreserv.jsp">Appointments</a></li>
+             <li><a class="active" href="ShowAppointments">Appointments</a></li>
             <li><a href="logout">Logout</a></li>
             </ul>
 	        <p class="navbar-text pull-right">
@@ -77,7 +70,6 @@
 <div class="well">    
       <form class="form-horizontal" method="post" action="appointment" name="sayz">
 		<legend>Add Appointment</legend>
-		${user.id}
 		<input type="hidden" name="uid" value="${user.id}">		
 		<div class="control-group">
 	        <label class="control-label">Username</label>
@@ -175,12 +167,16 @@
 <c:if test="${user.usertype == 0}">
 
         <% 
-        UserDAO a = new UserDAO();
-        java.util.Enumeration names = request.getParameterNames();
+        java.util.Enumeration<String> names = request.getParameterNames();
         while(names.hasMoreElements()){
-			a.upUser(names.nextElement().toString(), "","");
+			AppDAO.removeAppointment(Integer.parseInt(names.nextElement().toString()));
         }
-        out.println("seçtiğiniz kullanıcılarının randevuları silinmiştir.");
+        %>
+        
+        <p>Seçtiğiniz kullanıcılarının randevuları silinmiştir.</p>
+
+        <%
+        request.getRequestDispatcher("ShowAppointments").forward(request, response);
         %>
 
 </c:if>

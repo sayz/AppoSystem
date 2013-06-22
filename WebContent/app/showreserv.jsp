@@ -1,17 +1,7 @@
-<%@page import="db.AppDAO.Appointment"%>
-<%@page import="java.util.List" %>
-<%@page import="db.UserDAO" %>
-<%@page import="servlets.UserServlet" %>
+<%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%
-//List<UserDAO.User> users = new UserDAO().selectAppUsers();
-//request.setAttribute("users", users);
-%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="tr">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -58,7 +48,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
              <li><a href="home.jsp">Home</a></li>
-             <li><a class="active" href="showreserv.jsp">Appointments</a></li>
+             <li class="active"><a href="ShowAppointments">Appointments</a></li>
             <li><a href="logout">Logout</a></li>
             </ul>
 	        <p class="navbar-text pull-right">
@@ -74,7 +64,7 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
 <div class="hero-unit">
       
-<table class="table">
+<table class="table table-hover table-bordered">
               <thead>
                 <tr>
                   <th> </th>
@@ -88,11 +78,13 @@
 
 <c:when test="${usertype == 0}">
 <form action="addappo.jsp">	
-		<button type="submit" class="btn btn-success" rel="tooltip" title="first tooltip">Sil</button>
-            <%-- <c:forEach items="${users}" var="user"> --%>
+		<p><button type="submit" class="btn btn-danger btn-small" rel="tooltip" title="Seçilenleri sil">
+		<i class="icon-trash icon-white"></i>
+		Del
+		</button></p>
             <c:forEach items="${users}" var="appo">
-            <tr>
-            	<td><input type="checkbox" name="${appo.username}" ></td>
+            <tr class="info">
+            	<td><input type="checkbox" name="${appo.id}" ></td>
   				<td>${appo.fullname}</td>
   				<td>${appo.date}</td>
   				<td>${appo.hour}</td>
@@ -106,15 +98,16 @@
 <c:when test="${usertype == 2}">
 			<tr>
 				<td> </td>
-				<td>${user.fullname}</td>
-  				<td>${user.appodate}</td>
-  				<td>${user.appotime}</td>
+  				<td>${ufname}</td>
+  				<td>${uappo.date}</td>
+  				<td>${uappo.hour}</td>
   			</tr>
 </c:when>
 
 </c:choose>
             </tbody>
 	</table>
+
 </div>
 
       <hr>

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import db.AppDAO;
-import db.AppDAO.Appointment;
 import db.UserDAO;
 import db.UserDAO.User;
 
@@ -42,19 +41,16 @@ public class ShowAppointments extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		UserDAO.User user = (UserDAO.User) request.getSession().getAttribute("user");
-		//session.setAttribute("user", user);
+        List<UserDAO.User> usersAppos = (List<User>) UserDAO.selectAppUsers();
+        AppDAO.Appointment userAppo = AppDAO.getUserAppointments(user.id);
+        
+		session.setAttribute("ufname", user.fullname);
         session.setAttribute("usertype", user.usertype);
-        //List<UserDAO.User> users = UserDAO.selectAllusers();
-		
-        List<UserDAO.User> users = (List<User>) UserDAO.selectAppUsers();
-		session.setAttribute("users", users);
+		session.setAttribute("users", usersAppos);
+		session.setAttribute("uappo", userAppo);
 
-        //request.setAttribute("users", users);
-        //List<Appointment> appointments = AppDAO.getAllAppointments();
-        //session.setAttribute("appointments", appointments);
         request.getRequestDispatcher("showreserv.jsp").forward(request, response);
         //response.sendRedirect("showreserv.jsp");	
 	}

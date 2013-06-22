@@ -1,17 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@page import="db.UserDAO" %>
-<%@page import="db.AppDAO" %>
-<%@page import="servlets.UserServlet" %>
-<%@page import="java.util.List" %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="tr">
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Randevu Ekleme</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -42,35 +36,6 @@
   
 <body>
 
-
-<% /*
-String uname, adate, atime;
-int uid;
-
-uid = Integer.parseInt(request.getParameter("uid"));
-uname = request.getParameter("uname");
-adate = request.getParameter("datetime").substring(0, 10);
-atime = request.getParameter("datetime").substring(11);*/
-%>
-
-
-
-<%
-//AppDAO.Appointment appointment = new AppDAO().getUserAppointments(uid);
-//List <AppDAO.Appointment> appointments = new AppDAO().getAllUserAppointments(uid);
-//request.setAttribute("appointments", appointments);
-
-//List <UserDAO.User> users = new UserDAO().selectAppUsers();
-
-//request.setAttribute("users", users);
-%>
-
-<%
-//new AppDAO().createAppointment(uid, adate, atime, 0);
-%>
-<%
-//new UserDAO().upUser(uname, adate, atime);
-%>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -97,10 +62,6 @@ atime = request.getParameter("datetime").substring(11);*/
         <h2>Your appointment has been ok!</h2>
         <h4>Your appointment:</h4>
 
-<%--         <c:forEach items="${appointments}" var="appo">
-        <p>servlet ile date: ${appo.date}</p>  
-        <p>servlet ile hour: ${appo.hour}</p>
-        </c:forEach> --%>
         <p>date: ${appointment.date}</p>
         <p>hour: ${appointment.hour}</p>
       </div>

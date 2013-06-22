@@ -6,7 +6,7 @@ package db;
 
 /**
  *
- * @author brook
+ * @author sayz
  */
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,18 +15,10 @@ import java.util.List;
 public class AppDAO {    
     private static final String CREATEAPPOINTMENT = "Insert into Appointments(userid, date, hour, isdone)"
             + " values(?, ?, ?, ?)";
-
     private static final String UPDATEAPPOINTMENT = "Update Appointments set date=?, hour=? where userid=?";
-
-    
     private static final String REMOVEAPPOINTMENT = "Delete from Appointments where userid=?";
     private static final String GETALL = "Select * from Appointments A, Users U where A.userid = U.id";
-    //private static final String GETALL = "SELECT id, username, userid, date, hour FROM Appointments A, Users U WHERE A.userid = U.id";
-    //private static final String GETALL = "Select * from Appointments";
-    //private static final String GETALLEVENTRESERVATIONS = "Select * from Appointments A, Users U where A.userid = U.id and R.eventid=?";
     private static final String GETUSERAPPOINTMENT = "Select * from Appointments where userid=?";
-    //private static final String GETALLUSERRESERVATION = "Select * from Reservations, Events E "
-      //      + "where userid=? and R.eventid=E.id";
 
     public static Appointment createAppointment(int userid, String date, String hour, int isdone) {
         try {
@@ -48,7 +40,8 @@ public class AppDAO {
                 ps.setString(2, date);
                 ps.setString(3, hour);
                 ps.setInt(4, isdone);
-                int result = ps.executeUpdate();
+                @SuppressWarnings("unused")
+				int result = ps.executeUpdate();
                 ResultSet res = ps.getGeneratedKeys();
                 if (res.next()) {
                     return new Appointment(res.getInt(1), userid, date, hour, isdone);
@@ -60,7 +53,7 @@ public class AppDAO {
         return null;
     }
 
-    public static boolean removeappointment(int userid) {
+    public static boolean removeAppointment(int userid) {
         try {
             Connection con = DB.getConnection();
             PreparedStatement ps = con.prepareStatement(REMOVEAPPOINTMENT);

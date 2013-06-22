@@ -15,10 +15,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+*
+* @author sayz
+*/
+
 public class UserServlet extends HttpServlet {
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1377671646360577756L;
+
+	/**
      * Handles the HTTP
      * <code>GET</code> method.
      *

@@ -7,7 +7,7 @@ package servlets;
 
 /**
  *
- * @author brook
+ * @author sayz
  */
 import db.UserDAO;
 import java.io.IOException;

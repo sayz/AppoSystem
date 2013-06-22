@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+
 <html lang="tr">
   <head>
     <meta charset="utf-8">
@@ -54,7 +56,7 @@
               <input class="span2" type="text" placeholder="Username" name=username>
               <input class="span2" type="password" placeholder="Password" name="password">
               <button type="submit" class="btn" value="login">Sign In</button>
-              <div><c:out value="${requestScope.errorMessage}"/></div>
+              <div>${requestScope.errorMessage}</div>
             </form>
           </div><!--/.nav-collapse -->
         </div>
@@ -71,7 +73,6 @@
         <p>&copy; OMÜ 2013</p>
       </footer>
 
-    </div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->

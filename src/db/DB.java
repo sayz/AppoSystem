@@ -7,11 +7,10 @@ package db;
 
 /**
  *
- * @author brook
+ * @author sayz
  */
 
 import java.sql.*;
-import javax.sql.*;
 
 public class DB {
     private static String url = "jdbc:mysql://localhost:3306/dentist";

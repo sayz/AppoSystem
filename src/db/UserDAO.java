@@ -6,7 +6,7 @@ package db;
 
 /**
  *
- * @author brook
+ * @author sayz
  */
 
 
@@ -19,13 +19,11 @@ public class UserDAO {
     public static final int USER = 2;
     
     private static final String UPDATEUSER = "UPDATE  Users SET  appodate =  ?, appotime =  ? WHERE  Users.username = ?";
-    //private static final String ADDAPPO = "Insert into Appointments (userdID, date, hour, isdone) values (?, ?, ?, ?)";
     private static final String CHECKUSER = "Select * from Users where username=? and password=?";
     private static final String CREATEUSER = "Insert into Users (username, password, fullname, appodate, appotime, appoid, usertype) values (?, ?, ?, ?, ?, ?, ?)";
     private static final String FINDUSER = "Select * from Users where (username like ? or fullname like ?) and usertype=2";
     private static final String GETALLUSERS = "Select * from Users";
     private static final String DELETEUSER = "Delete from Users where id=? and not usertype=0";
-    //private static final String GETAPPUSERS = "Select * from Users where appodate";
     private static final String GETAPPUSERS = "SELECT U.id, username, fullname, date, hour, isdone, usertype, appoid FROM Appointments A, Users U WHERE A.userid = U.id";
     
     public static User existsUser(String username, String password){
@@ -68,7 +66,8 @@ public class UserDAO {
             s.setInt(6, appoid);
             s.setInt(7, usertype);
 
-            int result = s.executeUpdate();
+            @SuppressWarnings("unused")
+			int result = s.executeUpdate();
             ResultSet res = s.getGeneratedKeys();
             if(res.next()){
                 return new User(res.getInt(1), username, password, fullname, appodate, appotime, appoid, usertype);
@@ -79,7 +78,8 @@ public class UserDAO {
         return null;
     }
 
-    public static void upUser(String username, String appodate, String appotime ){        
+    @SuppressWarnings("unused")
+	public static void upUser(String username, String appodate, String appotime ){        
         try {
             Connection con = DB.getConnection();
             PreparedStatement s = con.prepareStatement(UPDATEUSER);
